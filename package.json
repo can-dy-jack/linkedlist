@@ -1,5 +1,5 @@
 {
-  "name": "linkedlist",
+  "name": "@kartjim/linkedlist",
   "version": "1.2.1",
   "description": "LinkedList implementation in JavaScript",
   "main": "index.js",
