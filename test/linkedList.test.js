@@ -246,6 +246,57 @@ describe('LinkedList Tests', () => {
     });
   });
 
+  describe('removeBefore() test', () => {
+    it('can\'t remove a node in front of the head node', () => {
+      expect(root.removeBefore(root.getHead())).to.equal(false);
+    });
+
+    it('it can remove the head node', () => {
+      expect(root.removeBefore(root.getHead().getNext())).to.equal(true);
+      expect(root.getCount()).to.equal(6);
+      expect(root.toArray()).to.eql([12, 13, 14, 41, 42, 43]);
+    });
+
+    it('remove nodes before the giving normal node', () => {
+      const FortyOne = root.find((n) => n.getValue() === 41);
+      expect(root.removeBefore(FortyOne)).to.equal(true);
+      expect(root.getCount()).to.equal(5);
+      expect(root.toArray()).to.eql([12, 13, 41, 42, 43]);
+    });
+
+    it('throw new Error when node is not LinkedListNode', () => {
+      expect(
+        () => root.removeBefore(1, 40)
+      ).to.throw(Error).to.have.property(
+        'message',
+        'removeBefore() expect a LinkedListNode.'
+      );
+    });
+  });
+
+  describe('removeAfter() test', () => {
+    it('can\'t remove a node after the end node', () => {
+      const Tail = root.find((n) => n.getValue() === 43);
+      expect(root.removeAfter(Tail)).to.equal(false);
+    });
+
+    it('remove nodes after the giving node', () => {
+      const Thirteen = root.find((n) => n.getValue() === 13);
+      expect(root.removeAfter(Thirteen)).to.equal(true);
+      expect(root.getCount()).to.equal(4);
+      expect(root.toArray()).to.eql([12, 13, 42, 43]);
+    });
+
+    it('throw new Error when node is not LinkedListNode', () => {
+      expect(
+        () => root.removeAfter(1, 40)
+      ).to.throw(Error).to.have.property(
+        'message',
+        'removeAfter() expect a LinkedListNode.'
+      );
+    });
+  });
+
   describe('clear() test', () => {
     it('clear the linkedlist', () => {
       root.clear();

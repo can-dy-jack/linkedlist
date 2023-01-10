@@ -178,8 +178,58 @@ class LinkedList {
   }
 
   /**
+   * @description remove nodes before the giving node
+   */
+  removeBefore(node) {
+    if (!node
+      || !(node instanceof LinkedListNode)
+    ) {
+      throw new Error('removeBefore() expect a LinkedListNode.');
+    }
+
+    if (node === this.head) { // can't remove a node in front of the head node
+      return false;
+    }
+
+    let cur = this.head;
+    let pre = null;
+    let prior = null;
+    while (cur && cur !== node) {
+      prior = pre;
+      pre = cur;
+      cur = cur.getNext();
+    }
+    if (prior == null) { // delete this.head
+      this.removeHead();
+      return true;
+    }
+
+    prior.setNext(cur);
+    pre.setNext(null);
+    this.count -= 1;
+    return true;
+  }
+
+  /**
+   * @description remove nodes after the giving node
+   */
+  removeAfter(node) {
+    if (!node
+      || !(node instanceof LinkedListNode)
+    ) {
+      throw new Error('removeAfter() expect a LinkedListNode.');
+    }
+
+    if (node.getNext() == null) { // can't remove a node after the tail node
+      return false;
+    }
+    node.setNext(node.getNext().getNext());
+    this.count -= 1;
+    return true;
+  }
+
+  /**
    * @description remove nodes based on a callback
-   * @returns number of removed nodes
    */
   removeEach(callback) {
     if (typeof callback !== 'function') {
