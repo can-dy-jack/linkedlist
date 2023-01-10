@@ -68,6 +68,55 @@ class LinkedList {
   }
 
   /**
+   * @description Add a node before the giving node
+   */
+  insertBefore(node, value) {
+    if (!node
+      || !(node instanceof LinkedListNode)
+    ) {
+      throw new Error('insertBefore() expect a LinkedListNode.');
+    }
+
+    let cur = this.head;
+    let pre = null;
+    while (cur && cur !== node) {
+      pre = cur;
+      cur = cur.getNext();
+    }
+
+    if (pre == null) { // insert head
+      this.insertHead(value);
+    } else {
+      const newNode = new LinkedListNode(value);
+      pre.setNext(newNode);
+      newNode.setNext(cur);
+      this.count += 1;
+    }
+    return true;
+  }
+
+  /**
+   * @description Add a node after the giving node
+   */
+  insertAfter(node, value) {
+    if (!node
+      || !(node instanceof LinkedListNode)
+    ) {
+      throw new Error('insertAfter() expect a LinkedListNode.');
+    }
+
+    const newNode = new LinkedListNode(value);
+    if (node.getNext() == null) { // end node
+      node.setNext(newNode);
+    } else {
+      newNode.setNext(node.getNext());
+      node.setNext(newNode);
+    }
+    this.count += 1;
+    return true;
+  }
+
+  /**
    * @description remove a node at the beginnig of the LinkedList.
    */
   removeHead() {

@@ -196,6 +196,56 @@ describe('LinkedList Tests', () => {
     });
   });
 
+  describe('insertBefore() test', () => {
+    it('Add a node before the head node', () => {
+      const Twelve = root.find((n) => n.getValue() === 12);
+      expect(root.insertBefore(Twelve, 1)).to.equal(true);
+      expect(root.getCount()).to.equal(4);
+      expect(root.toArray()).to.eql([1, 12, 41, 42]);
+    });
+
+    it('Add a node before the normal node', () => {
+      const FortyOne = root.find((n) => n.getValue() === 41);
+      expect(root.insertBefore(FortyOne, 13)).to.equal(true);
+      expect(root.getCount()).to.equal(5);
+      expect(root.toArray()).to.eql([1, 12, 13, 41, 42]);
+    });
+
+    it('throw an error when the giving node is not LinkedListNode', () => {
+      expect(
+        () => root.insertBefore(1, 40)
+      ).to.throw(Error).to.have.property(
+        'message',
+        'insertBefore() expect a LinkedListNode.'
+      );
+    });
+  });
+
+  describe('insertAfter() test', () => {
+    it('Add a node after the giving node', () => {
+      const Thirteen = root.find((n) => n.getValue() === 13);
+      expect(root.insertAfter(Thirteen, 14)).to.equal(true);
+      expect(root.getCount()).to.equal(6);
+      expect(root.toArray()).to.eql([1, 12, 13, 14, 41, 42]);
+    });
+
+    it('Add a node before the end node', () => {
+      const FortyTwo = root.find((n) => n.getValue() === 42);
+      expect(root.insertAfter(FortyTwo, 43)).to.equal(true);
+      expect(root.getCount()).to.equal(7);
+      expect(root.toArray()).to.eql([1, 12, 13, 14, 41, 42, 43]);
+    });
+
+    it('throw an error when the giving node is not LinkedListNode', () => {
+      expect(
+        () => root.insertAfter(1, 40)
+      ).to.throw(Error).to.have.property(
+        'message',
+        'insertAfter() expect a LinkedListNode.'
+      );
+    });
+  });
+
   describe('clear() test', () => {
     it('clear the linkedlist', () => {
       root.clear();

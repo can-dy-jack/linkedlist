@@ -1,6 +1,6 @@
 {
   "name": "@kartjim/linkedlist",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "LinkedList implementation in JavaScript",
   "main": "index.js",
   "scripts": {
