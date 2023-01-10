@@ -300,7 +300,7 @@ class LinkedList {
   }
 
   /**
-   * @description filter the linkedlist based on a callback, return a new object.
+   * @description filter the linkedlist based on a callback, return a new LinkedList.
    */
   filter(callback) {
     if (typeof callback !== 'function') {
@@ -315,6 +315,38 @@ class LinkedList {
       }
     });
     return res;
+  }
+
+  /**
+   * @description map the linkedlist' value based on a callback, return a new LinkedList.
+   */
+  map(callback) {
+    if (typeof callback !== 'function') {
+      throw new Error('map(callback) expect a function.');
+    }
+
+    let node = null;
+    const ans = new LinkedList();
+    this.forEach((cur, pos) => {
+      const val = callback(cur.getValue(), pos);
+      node = ans.insertTail(val, node);
+    });
+    return ans;
+  }
+
+  /**
+   * @description reduce the linkedlist based on a callback, return value.
+   */
+  reduce(callback, initVal) {
+    if (typeof callback !== 'function') {
+      throw new Error('reduce(callback) expect a function.');
+    }
+
+    let ans = initVal;
+    this.forEach((cur, pos) => {
+      ans = callback(ans, cur.getValue(), pos);
+    });
+    return ans;
   }
 
   /**

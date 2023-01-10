@@ -188,7 +188,7 @@ describe('LinkedList Tests', () => {
   });
 
   describe('filter() test', () => {
-    it('filter the linkedlist based on a callback, return a new object.', () => {
+    it('filter the linkedlist based on a callback, return a new LinkedList.', () => {
       expect(root.filter((n) => n.getValue() > 40).toArray()).to.deep.equal([41, 42]);
     });
 
@@ -198,6 +198,40 @@ describe('LinkedList Tests', () => {
       ).to.throw(Error).and.to.have.property(
         'message',
         'filter(callback) expect a function.'
+      );
+    });
+  });
+
+  describe('map() test', () => {
+    it('map the linkedlist\' value based on a callback, return a new LinkedList.', () => {
+      const newRoot = root.map((n) => n % 2);
+      expect(newRoot.toArray()).to.eql([0, 1, 0]);
+      expect(root.toArray()).to.eql([12, 41, 42]);
+      expect(root === newRoot).to.equal(false);
+    });
+
+    it('throw error when callback is not function', () => {
+      expect(
+        () => root.map(41)
+      ).to.throw(Error).and.to.have.property(
+        'message',
+        'map(callback) expect a function.'
+      );
+    });
+  });
+
+  describe('reduce() test', () => {
+    it('reduce the linkedlist based on a callback, return value.', () => {
+      const newRoot = root.reduce((pre, cur) => cur + pre, 0);
+      expect(newRoot).to.equal(95);
+    });
+
+    it('throw error when callback is not function', () => {
+      expect(
+        () => root.reduce('44')
+      ).to.throw(Error).and.to.have.property(
+        'message',
+        'reduce(callback) expect a function.'
       );
     });
   });

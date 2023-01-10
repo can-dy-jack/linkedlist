@@ -157,11 +157,28 @@ console.log(num1.getValue()) // 41
 console.log(num2) // null
 ```
 ### filter
-filter the linkedlist based on a callback, return a new object.  
+filter the linkedlist based on a callback, return a new LinkedList.  
 
 ```js
 console.log(root.filter((n) => n.getValue() > 40).toArray()) // [41, 42]
 ```
+### map
+map the linkedlist\' value based on a callback, return a new LinkedList. 
+
+```js
+root.toArray()    // [12, 41, 42]);
+const newRoot = root.map((n) => n % 2);
+newRoot.toArray()  // [0, 1, 0]
+root === newRoot  // false
+```
+### reduce
+reduce the linkedlist based on a callback, return value.
+
+```js
+const newRoot = root.reduce((pre, cur) => cur + pre, 0); 
+// [12, 41, 42] => 95
+```
+
 ### insertBefore
 Add a node before the head node.   
 time complexity: $O(n)$
