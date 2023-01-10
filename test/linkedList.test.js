@@ -303,6 +303,14 @@ describe('LinkedList Tests', () => {
     });
   });
 
+  describe('reverse() test', () => {
+    it('reverse the linkedlist', () => {
+      expect(root.toArray()).to.eql([12, 13, 42, 43]);
+      root.reverse();
+      expect(root.toArray()).to.eql([43, 42, 13, 12]);
+    });
+  });
+
   describe('clear() test', () => {
     it('clear the linkedlist', () => {
       root.clear();

@@ -4,9 +4,7 @@ LinkedList implementation in JavaScript
 > 学习项目，参考自：[datastructures-js/linked-list](https://github.com/datastructures-js/linked-list)
 
 
-<!-- 给代码添加 注释 @param @returns 等-->
-<!-- 双循环链表 -->
-<!-- 添加 .d.ts 文件 -->
+<!-- 双循环链表 Double linked list -->
 
 ## install
 
@@ -49,7 +47,7 @@ console.log(root.toArray()) // [11, 12]
 
 ### insertTail
 add a node at the end of the LinkedList.  
-time complexity: min $O(1)$ , max $o(n)$
+time complexity: min $O(1)$ , max $O(n)$
 ```js
 let saveNode = root.insertTail(21);
 root.insertTail(22, saveNode);
@@ -88,6 +86,15 @@ convert linkedlist into Array.
 time complexity: $O(n)$
 ```js
 console.log(root.toArray()) // [11, 12, 31, 21, 22]
+```
+### reverse
+reverse the linkedlist.  
+
+```js
+root.reverse();
+// [12, 13, 42, 43]
+// => 
+// [43, 42, 13, 12]
 ```
 
 ### removeHead
@@ -231,4 +238,4 @@ checks if node has a next node.
 
 
 ## License
-MIT
+[MIT](./LICENSE)

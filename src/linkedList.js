@@ -318,6 +318,21 @@ class LinkedList {
   }
 
   /**
+   * @description reverse the linkedlist 反转链表
+   */
+  reverse() {
+    let cur = this.head;
+    let pre = null;
+    while (cur) {
+      const temp = cur.getNext();
+      cur.setNext(pre);
+      pre = cur;
+      cur = temp;
+    }
+    this.head = pre;
+  }
+
+  /**
    * @description check if the likedlist is empty.
    */
   isEmpty() {
