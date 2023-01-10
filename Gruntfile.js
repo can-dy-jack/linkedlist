@@ -27,4 +27,5 @@ module.exports = (grunt) => {
   grunt.registerTask('test', ['mochaTest']);
   grunt.registerTask('coverage', ['mocha_istanbul']);
   grunt.registerTask('build', ['lint', 'coverage']);
+  // uglify
 };

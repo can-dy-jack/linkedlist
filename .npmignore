@@ -6,3 +6,4 @@ Gruntfile.js
 coverage/
 node_modules/
 test/
+build/

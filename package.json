@@ -1,6 +1,6 @@
 {
   "name": "@kartjim/linkedlist",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "LinkedList implementation in JavaScript",
   "main": "index.js",
   "scripts": {
@@ -30,6 +30,7 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
     "grunt": "^1.5.3",
+    "grunt-contrib-uglify": "^5.2.2",
     "grunt-eslint": "^24.0.1",
     "grunt-mocha-istanbul": "^5.0.2",
     "grunt-mocha-test": "^0.13.3",
