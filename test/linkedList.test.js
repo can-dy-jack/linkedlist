@@ -15,10 +15,15 @@ describe('LinkedList Tests', () => {
   });
 
   describe('insertTail() test', () => {
+    let saveNode;
     it('add a node at the end of the LinkedList.', () => {
-      expect(root.insertTail(21)).to.be.instanceOf(LinkedListNode);
+      saveNode = root.insertTail(21);
+      expect(saveNode).to.be.instanceOf(LinkedListNode);
       assert.equal(root.getCount(), 3);
-      expect(root.insertTail(22)).to.be.instanceOf(LinkedListNode);
+    });
+
+    it('add a node at the end of the LinkedList; loop from giving node.', () => {
+      expect(root.insertTail(22, saveNode)).to.be.instanceOf(LinkedListNode);
       assert.equal(root.getCount(), 4);
     });
   });
@@ -107,7 +112,7 @@ describe('LinkedList Tests', () => {
   });
 
   describe('removeEach() test', () => {
-    it('removeEach', () => {
+    it('remove nodes based on a callback', () => {
       root.insertTail(41);
       root.insertTail(42);
       expect(root.toArray()).to.deep.equal([12, 21, 41, 42]);
@@ -117,6 +122,7 @@ describe('LinkedList Tests', () => {
       expect(root.getCount()).to.equal(3);
       expect(root.toArray()).to.deep.equal([12, 41, 42]);
     });
+
     it('throw error when callback is not function', () => {
       expect(
         () => root.removeEach(21)
