@@ -1,10 +1,10 @@
-# linkedlist
-LinkedList implementation in JavaScript
+# @kartjim/linkedlist
+LinkedList and DoubleLinkedList implementation in JavaScript
 
 > 学习项目，参考自：[datastructures-js/linked-list](https://github.com/datastructures-js/linked-list)
 
-
-<!-- 双循环链表 Double linked list -->
+<!-- 代码注释 @params @returns -->
+<!-- .d.ts 文件 -->
 
 ## install
 
@@ -16,7 +16,9 @@ npm i @kartjim/linkedlist
 ```js
 const {
   LinkedList,
-  LinkedListNode
+  DoubleLinkedList,
+  LinkedListNode,
+  DoubleLinkedListNode,
 } = require('@kartjim/linkedlist');
 ```
 
@@ -24,10 +26,12 @@ const {
 ```js
 import {
   LinkedList,
-  LinkedListNode
+  DoubleLinkedList,
+  LinkedListNode,
+  DoubleLinkedListNode,
 } from '@kartjim/linkedlist';
 ```
-## API
+## LinkedList API
 ### use
 constructor
 
@@ -253,6 +257,161 @@ get the next node.
 ### hasNext
 checks if node has a next node.
 
+## DoubleLinkedList API
+### use
+constructor
+
+```js
+const root = new DoubleLinkedList();
+```
+
+### insertHead
+inserts a node at the beginning of the DoubleLinkedList.  
+time complexity: $O(1)$
+
+```js
+root.insertHead(2)
+console.log(root.insertHead(1).getCount()) // 1
+console.log(root.getCount()) // 2
+console.log(root.toArray()) // [1, 2]
+```
+
+### insertTail
+add a node at the end of the DoubleLinkedList.  
+time complexity: $O(1)$ 
+```js
+root.insertTail(3)
+console.log(root.getCount()) // 3
+console.log(root.toArray()) // [1, 2, 3]
+```
+### insertAt
+add a node at a specific position.  
+time complexity: $O(n)$ 
+```js
+root.insertAt(0, 0)
+root.insertAt(4, 4)
+root.insertAt(2, 21)
+console.log(root.getCount()) // 6
+console.log(root.toArray()) // [0, 1, 21, 2, 3, 4]
+```
+
+### getCount
+get the count of the DoubleLinkedList.  
+ 
+```js
+console.log(root.getCount()) // 6
+```
+
+### toArray
+convert the doubleLinkedList into an array.
+ 
+```js
+console.log(root.toArray()) // [0, 1, 21, 2, 3, 4]
+```
+### isEmpty
+check if the DoubleLinkedList is empty.  
+ 
+```js
+console.log(root.isEmpty()) // false
+```
+
+### getHead
+get the head of doubleLinkedList.    
+ 
+```js
+console.log(root.getHead().getValue()) // 0
+```
+### getTail
+get the tail of doubleLinkedList.    
+ 
+```js
+console.log(root.getTail().getValue()) // 4
+```
+
+### forEach
+Traverses the list from beginning to end.     
+ 
+```js
+const arr = [];
+root.forEach((node) => {
+  const val = node.getValue();
+  if (val > 9) arr.push(val);
+});
+console.log(arr) // [21]
+```
+### removeHead
+remove the head of the DoubleLinkedList.      
+time complexity: $O(1)$
+```js
+console.log(root.removeHead().getValue()) // 0
+console.log(root.toArray()) // [1, 21, 2, 3, 4]
+```
+### removeTail
+remove the tail of the DoubleLinkedList.      
+time complexity: $O(1)$
+```js
+console.log(root.removeTail().getValue()) // 4
+console.log(root.toArray()) // [1, 21, 2, 3]
+```
+
+### removeAt
+remove a node at a specific position.       
+time complexity: $O(n)$
+```js
+console.log(root.removeAt(2).getValue()) // 2
+console.log(root.toArray()) // [1, 21, 3]
+```
+
+### find     
+find the first node in the DoubleLinkedList based on a callback, get null if nothing is found. It also accepts a second param as the starting node to start searching from. 
+```js
+const num2 = root.find((n) => n.getValue() === 21);
+console.log(num2.getValue()) // 21
+```
+### filter     
+filter the linkedlist based on a callback, return a new LinkedList.  
+```js
+console.log(root.filter((n) => n.getValue() > 20).toArray()) // [21]
+```
+
+### clear     
+clear the linkedlist.  
+```js
+root.clear();
+console.log(root.getCount()) // 0
+console.log(root.isEmpty()) // true
+```
+
+### DoubleLinkedList.fromArray()     
+create a LinkedList from an Array.   
+```js
+console.log(DoubleLinkedList.fromArray(['a', 'b', 'c', 'd']).toArray())
+// ['a', 'b', 'c', 'd']
+```
+## DoubleLinkedListNode
+### setValue
+set the value of the node.
+
+### getValue
+get the value of the node.
+
+### setPrev
+set the previous node.
+
+### getPrev
+get the previous node.
+
+### hasPrev
+check if node has a previous node.
+
+### setNext
+set the next node.
+
+### getNext
+get the next node.
+
+### hasNext
+check if node has a next node.
 
 ## License
 [MIT](./LICENSE)

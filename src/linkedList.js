@@ -10,9 +10,9 @@ const { LinkedListNode } = require('./linkedListNode');
  * @class
  */
 class LinkedList {
-  constructor(head = null, count = 0) {
-    this.head = head;
-    this.count = count;
+  constructor() {
+    this.head = null;
+    this.count = 0;
   }
 
   /**
@@ -409,6 +409,10 @@ class LinkedList {
    * @description create a LinkedList from an Array
    */
   static fromArray(arr) {
+    if (!Array.isArray(arr)) {
+      throw new Error('fromArray(arr) expect an array');
+    }
+
     if (arr.length === 0) {
       return new LinkedList();
     }
